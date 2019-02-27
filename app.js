@@ -12,6 +12,7 @@ require('dotenv').config();
 
 const auth = require('./routes/auth');
 const tour = require('./routes/tour');
+const user = require('./routes/user');
 
 mongoose.connect(process.env.MONGODB_URI, {
   keepAlive: true,
@@ -58,6 +59,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/auth', auth);
+app.use('/user', user);
 // app.use('/tour', tour);
 
 

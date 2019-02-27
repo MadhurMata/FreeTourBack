@@ -54,10 +54,11 @@ router.post('/login', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
   const {
     username,
-    password
+    password,
+    email,
   } = req.body;
 
-  if (!username || !password) {
+  if (!username || !password || !email) {
     return res.status(422).json({
       error: 'empty'
     });
@@ -79,6 +80,7 @@ router.post('/signup', (req, res, next) => {
       const newUser = User({
         username,
         password: hashPass,
+        email,
       });
 
       return newUser.save().then(() => {
@@ -93,6 +95,7 @@ router.post('/logout', (req, res) => {
   req.session.destroy()
   return res.status(204).send();
 });
+
 
 router.get('/private', isLoggedIn(), (req, res, next) => {
   res.status(200).json({
