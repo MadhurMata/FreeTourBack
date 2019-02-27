@@ -6,15 +6,18 @@ const tourSchema = new Schema({
   city: String,
   description: String,
   location: {
-    latitude: Number,
-    longitude: Number
+    type: {
+      type: String
+    },
+    coordinates: [Number]
   },
   duration: Number,
   rating: Number,
-  reviews: [],
-  POI: [],
+  reviews: Array,
+  POI: [Object],
 });
 
-const Tour = mongoose.model('User', tourSchema);
+const Tour = mongoose.model('Tour', tourSchema);
 
 module.exports = Tour;
+
