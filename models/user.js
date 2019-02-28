@@ -7,10 +7,9 @@ const userSchema = new Schema({
   username: { type: String, unique: true, required: true},
   password: { type: String, required: true},
   email: { type: String, unique: true, required: true}, 
-  favorites: { type: ObjectId, ref: 'tour'},
-  myTours: { type: ObjectId, ref: 'tour'},
+  favorites: { type: ObjectId, ref: 'Tour'},
+  myTours: { type: ObjectId, ref: 'Tour'},
 });
 
 const User = mongoose.model('User', userSchema);
-
 module.exports = User;
