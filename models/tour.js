@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const tourSchema = new Schema({
   name: String,
+  image: String,
   city: String,
   description: String,
   location: {
