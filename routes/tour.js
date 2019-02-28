@@ -44,10 +44,33 @@ router.post('/create', (req, res, next) => {
     res.json(data).status(200)
 
   })
-  .catch((error) => {
-    console.log(error)
-  })
+  .catch(next)
 });
+
+router.get('/showTour/:id', (req, res, next) => {
+  const {id} = req.params;
+  Tour.findById(id)
+
+  .then((tour)=>{
+    res.json(tour).status(200)
+
+  })
+  .catch(next)
+})
+
+router.put('/:id/edit', (req, res, next) => {
+  const {id} = req.params;
+  const { tour } = req.body;
+
+  Tour.findByIdAndUpdate(id, tour)
+  .then((data)=>{
+    console.log('Hola  put', data)
+    res.json(data).status(200)
+
+  })
+  .catch(next)
+});
+
 
 
 module.exports = router;
