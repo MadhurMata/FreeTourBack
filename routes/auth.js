@@ -60,6 +60,7 @@ router.post('/signup', (req, res, next) => {
 
   if (!username || !password || !email) {
     return res.status(422).json({
+      
       error: 'empty'
     });
   }
