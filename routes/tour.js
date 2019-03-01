@@ -47,6 +47,16 @@ router.post('/create', (req, res, next) => {
   .catch(next)
 });
 
+router.get('/', (req, res, next) => {
+  console.log('ibfewkjbsn')
+Tour.find({})
+.then((tour)=>{
+  res.json(tour).status(200)
+})
+.catch(next)
+})
+
+
 router.get('/showTour/:id', (req, res, next) => {
   const {id} = req.params;
   Tour.findById(id)
