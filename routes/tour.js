@@ -3,6 +3,27 @@ const Tour = require('../models/tour');
 const router = express.Router();
 const protect = require('../middlewares/protectedView')
 
+
+router.get('/', (req, res, next) => {
+  Tour.find({})
+  .then((tour)=>{
+    res.json(tour).status(200)
+  })
+  .catch(next)
+})
+
+
+router.get('/profile', (req, res, next) => {
+  const creator = req.session.currentUser._id;
+  console.log( 'i am in profile', req.session.currentUser._id)
+  Tour.find({creator})
+  .then((tour)=>{
+    res.json(tour).status(200)
+  })
+  .catch(next)
+})
+
+
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Tour.findById(id)
@@ -15,8 +36,10 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/create', (req, res, next) => {
+  const creator = req.session.currentUser;
+
   const {
-     name,
+    name,
     image,
     city,
     description,
@@ -25,12 +48,15 @@ router.post('/create', (req, res, next) => {
     POI,
   } = req.body;
 
+  console.log(req.body)
+
   // if(!name ) {
   //   res.status(204).json({
   //     error: 'No content'
   //  })
   // }
   const tour = new Tour ({
+    creator,
     name,
     image,
     city,
@@ -47,17 +73,9 @@ router.post('/create', (req, res, next) => {
   .catch(next)
 });
 
-router.get('/', (req, res, next) => {
-  console.log('ibfewkjbsn')
-Tour.find({})
-.then((tour)=>{
-  res.json(tour).status(200)
-})
-.catch(next)
-})
-
 
 router.get('/showTour/:id', (req, res, next) => {
+  console.log('good luck')
   const {id} = req.params;
   Tour.findById(id)
 
@@ -67,6 +85,8 @@ router.get('/showTour/:id', (req, res, next) => {
   })
   .catch(next)
 })
+
+
 
 router.put('/:id/edit', (req, res, next) => {
   const {id} = req.params;

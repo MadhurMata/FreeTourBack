@@ -23,6 +23,8 @@ router.get('/', (req, res, next) => {
  
 });
 
+
+
 // router.post('/me/favorite', (req, res) => {
 //   // mirar si ya lo tienes en favorites
 //   console.log ('hola')
