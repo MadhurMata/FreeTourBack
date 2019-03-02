@@ -13,15 +13,7 @@ router.get('/', (req, res, next) => {
 })
 
 
-router.get('/profile', (req, res, next) => {
-  const creator = req.session.currentUser._id;
-  console.log( 'i am in profile', req.session.currentUser._id)
-  Tour.find({creator})
-  .then((tour)=>{
-    res.json(tour).status(200)
-  })
-  .catch(next)
-})
+
 
 
 router.get('/:id', (req, res, next) => {
