@@ -47,6 +47,16 @@ router.post('/create', (req, res, next) => {
   .catch(next)
 });
 
+router.get('/', (req, res, next) => {
+  console.log('ibfewkjbsn')
+Tour.find({})
+.then((tour)=>{
+  res.json(tour).status(200)
+})
+.catch(next)
+})
+
+
 router.get('/showTour/:id', (req, res, next) => {
   const {id} = req.params;
   Tour.findById(id)
@@ -64,13 +74,23 @@ router.put('/:id/edit', (req, res, next) => {
 
   Tour.findByIdAndUpdate(id, tour)
   .then((data)=>{
-    console.log('Hola  put', data)
     res.json(data).status(200)
 
   })
   .catch(next)
 });
 
+router.delete('/:id/delete', (req, res, next) => {
+  console.log('back end delete')
 
+  const {id} = req.params;
+
+  Tour.findByIdAndDelete(id)
+  .then(()=>{
+    res.json({message: 'Tour deleted'}).status(200)
+
+  })
+  .catch(next)
+});
 
 module.exports = router;
