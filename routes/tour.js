@@ -29,7 +29,6 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/create', (req, res, next) => {
   const creator = req.session.currentUser;
-
   const {
     name,
     image,
@@ -40,13 +39,6 @@ router.post('/create', (req, res, next) => {
     POI,
   } = req.body;
 
-  console.log(req.body)
-
-  // if(!name ) {
-  //   res.status(204).json({
-  //     error: 'No content'
-  //  })
-  // }
   const tour = new Tour ({
     creator,
     name,
