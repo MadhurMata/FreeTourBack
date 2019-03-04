@@ -12,10 +12,6 @@ router.get('/', (req, res, next) => {
   .catch(next)
 })
 
-
-
-
-
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Tour.findById(id)
@@ -70,13 +66,23 @@ router.get('/showTour/:id', (req, res, next) => {
   .catch(next)
 })
 
+// router.put('/:id/edit', (req, res, next) => {
+//   const {id} = req.params;
+//   const { tour } = req.body;
 
+//   Tour.findByIdAndUpdate(id, tour)
+//   .then((data)=>{
+//     res.json(data).status(200)
 
-router.put('/:id/edit', (req, res, next) => {
+//   })
+//   .catch(next)
+// });
+
+router.put('/:id', (req, res, next) => {
   const {id} = req.params;
-  const { tour } = req.body;
+  const { comments } = req.body;
 
-  Tour.findByIdAndUpdate(id, tour)
+  Tour.findByIdAndUpdate(id, comments)
   .then((data)=>{
     res.json(data).status(200)
 

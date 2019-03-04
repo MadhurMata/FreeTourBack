@@ -98,7 +98,7 @@ router.post('/logout', (req, res) => {
 });
 
 
-router.get('/private', isLoggedIn(), (req, res, next) => {
+router.get('/', isLoggedIn(), (req, res, next) => {
   res.status(200).json({
     message: 'This is a private message'
   });
