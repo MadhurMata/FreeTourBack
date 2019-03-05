@@ -35,6 +35,12 @@ router.post('/create', (req, res, next) => {
     POI,
   } = req.body;
 
+
+  // if(!name ) {
+  //   res.status(204).json({
+  //     error: 'No content'
+  //  })
+  // }
   const tour = new Tour ({
     creator,
     name,
@@ -55,7 +61,6 @@ router.post('/create', (req, res, next) => {
 
 
 router.get('/showTour/:id', (req, res, next) => {
-  console.log('good luck')
   const {id} = req.params;
   Tour.findById(id)
 
@@ -91,7 +96,6 @@ router.put('/comment/:id', (req, res, next) => {
 });
 
 router.delete('/:id/delete', (req, res, next) => {
-  console.log('back end delete')
 
   const {id} = req.params;
 
