@@ -78,14 +78,14 @@ router.get('/showTour/:id', (req, res, next) => {
 //   .catch(next)
 // });
 
-router.put('/:id', (req, res, next) => {
+router.put('/comment/:id', (req, res, next) => {
   const {id} = req.params;
-  const { comments } = req.body;
-
-  Tour.findByIdAndUpdate(id, comments)
+  const comments  = req.body;
+  Tour.findByIdAndUpdate(id, {$set: {comments}}, {new:true} )
+  //set le dice a mongoose que solo haga update del propiedad 'comments' porque sino te borraria el esto de las propiedades al update
   .then((data)=>{
+    console.log(data)
     res.json(data).status(200)
-
   })
   .catch(next)
 });

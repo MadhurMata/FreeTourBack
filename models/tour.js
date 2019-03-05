@@ -19,6 +19,7 @@ const tourSchema = new Schema({
   rating: Number,
   reviews: Array,
   POI: [Object],
+  comments: [Object],
 });
 
 const Tour = mongoose.model('Tour', tourSchema);
