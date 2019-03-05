@@ -40,7 +40,6 @@ router.post('/create', (req, res, next) => {
     POI,
   } = req.body;
 
-  console.log(req.body)
 
   // if(!name ) {
   //   res.status(204).json({
@@ -67,7 +66,6 @@ router.post('/create', (req, res, next) => {
 
 
 router.get('/showTour/:id', (req, res, next) => {
-  console.log('good luck')
   const {id} = req.params;
   Tour.findById(id)
 
@@ -93,7 +91,6 @@ router.put('/:id/edit', (req, res, next) => {
 });
 
 router.delete('/:id/delete', (req, res, next) => {
-  console.log('back end delete')
 
   const {id} = req.params;
 
