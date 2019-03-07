@@ -2,6 +2,7 @@ const express = require('express');
 const Tour = require('../models/tour');
 const router = express.Router();
 const protect = require('../middlewares/protectedView')
+const mongoose = require('mongoose');
 
 
 router.get('/', (req, res, next) => {
@@ -85,8 +86,9 @@ router.get('/showTour/:id', (req, res, next) => {
 
 router.put('/comment/:id', (req, res, next) => {
   const {id} = req.params;
+  const idObject = mongoose.Types.ObjectId(id);
   const comments  = req.body;
-  Tour.findByIdAndUpdate(id, {$set: {comments}}, {new:true} )
+  Tour.findByIdAndUpdate(idObject, {$set: {comments}}, {new:true} )
   //set le dice a mongoose que solo haga update del propiedad 'comments' porque sino te borraria el esto de las propiedades al update
   .then((data)=>{
     console.log(data)
